@@ -16,16 +16,18 @@ void MemberRegi() {
 	scanf("%d", &NewMemberInfo.gender);
 	getchar(); // 입력 버퍼 비우기
 
-	int MemberNumber = NewMemberInfo.gender * 10000 + NewMemberNumber;
+	NewMemberInfo.MemberNumber = NewMemberInfo.gender * 10000 + NewMemberNumber;
+	NewMemberNumber++;
 
-	int state = 0;
+	NewMemberInfo.state = 0;
 
 	FILE* file = fopen(FILENAME, "a");
 	if (file == NULL) {
 		printf("파일을 열 수 없습니다.\n");
 		exit(1);
 	}
-	fprintf(file, "%d,%s,%d, %s, %d \n", NewMemberInfo.MemberNumber, NewMemberInfo.name, NewMemberInfo.gender, NewMemberInfo.PhoneNumber, NewMemberInfo.state);
+	printf("%d, %s, %d, %s, %d \n", NewMemberInfo.MemberNumber, NewMemberInfo.name, NewMemberInfo.gender, NewMemberInfo.PhoneNumber, NewMemberInfo.state);
+	fprintf(file,"%d, %s, %d, %s, %d \n", NewMemberInfo.MemberNumber, NewMemberInfo.name, NewMemberInfo.gender, NewMemberInfo.PhoneNumber, NewMemberInfo.state);
 	fclose(file);
 	printf("\n인원 정보가 성공적으로 저장되었습니다.\n");
 	printf("===============================================================================================\n");
