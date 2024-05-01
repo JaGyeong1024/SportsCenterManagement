@@ -19,7 +19,7 @@ int CurrentMemberShow() {
 
 		sscanf(line, "%d, %[^,], %d, %[^,], %d", &currentMember->MemberNumber, currentMember->name, &currentMember->gender, currentMember->PhoneNumber, &currentMember->state);
 
-		(numMembers)++;
+		numMembers++;
 	}
 
 	fclose(file);
