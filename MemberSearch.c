@@ -1,5 +1,4 @@
 void MemberSearch(int SMemberNumber) {
-	// CSV 파일에서 조건에 맞는 행을 가져오는 함수
 	printf("-----------------------------------------------------------------------------------------------\n");
 	FILE* file = fopen(FILENAME, "r");
 	if (file == NULL) {
@@ -8,6 +7,8 @@ void MemberSearch(int SMemberNumber) {
 	}
 
 	char line[256];
+	int found = 0; // 검색 결과를 나타내는 변수
+
 	while (fgets(line, sizeof(line), file)) {
 		int MemberNumber = 0;
 		char name[MAXLEN];
@@ -20,7 +21,14 @@ void MemberSearch(int SMemberNumber) {
 		if (MemberNumber == SMemberNumber) {
 			printf("회원번호, 이름, 성별, 전화번호, (0:퇴실, 1:입실)\n");
 			printf(" %d,  %s, %d,  %s,      %d\n", MemberNumber, name, gender, PhoneNumber, state);
-			fclose(file);
-			return;
+			found = 1; // 검색 성공 표시
 		}
 	}
+
+	fclose(file);
+
+	if (!found) {
+		printf("유효하지 않은 회원번호입니다.\n");
+		fclose(file);
+	}
+}
